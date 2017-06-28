@@ -7,10 +7,9 @@
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	  <script src="main.js"></script>
-	  <script src="js/viewcount.js"></script>
-	  <script src="js/videoduration.js"></script>
-	  <link rel="stylesheet" type="text/css" href="style.css">
+	  <script src="js/main.js"></script>
+	  <script src="js/smoothscroll.js"></script>
+	  <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body style="background-color: #304352;font-family: 'Source Sans Pro', sans-serif">
 
@@ -45,23 +44,36 @@
 
 			 
 				<div id="res">
-	<!--	<div class="row">
+		<!--<div class="row">
 
 			<div class="col-md-2"></div>
 
 			<div class="col-md-8 text-center">
 				<img src="https://avatars3.githubusercontent.com/u/20399005?v=3" style="width: 150px;height: 150px;margin:0 auto" class="img-responsive img-circle">
-				<h3 style="color:white">Naveen Manikanta Kodigudla <br><span style="color: #e44c65;">Username:-</span><a href="#" style="text-decoration: none">  fellowhacker</a><br><span style="color: #e44c65;" class="fol">Followers:- </span> 5 &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #e44c65;" class="fol">Following:- </span> 15</h3>
+				<h3 style="color:white">Naveen Manikanta Kodigudla <br><span style="color: #e44c65;">Username:-</span><a href="#" style="text-decoration: none">  fellowhacker</a><br><span style="color: #e44c65;">Repositories:-</span><span style="color:white"> 120</span> <br><span style="color: #e44c65;" class="fol">Followers:- </span> 5 &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #e44c65;" class="fol">Following:- </span> 15<br><span style="color: #e44c65;">Bio:- </span><span style="color:white">Born To code</span> <br></h3>
+				<br><a href="#"><button class="btn btn-success" style="" id="butrep"><span style="font-size: 140%;">Click to view Repositories</span></button></a>
 			</div>
 
 			<div class="col-md-2"></div>
 
 		</div>-->
 		</div>
-		<div id="disp_res"></div>
-
-
-	 		    <div id="buttons"></div>
+		<div id="disp_res"></div><br><br>
+		<div class="disNone" style="display: one;" id="goToRepos" >
+		<div style="height: 50px;"></div>
+		<div id="repos"></div>
+		</div>
+ 
+ 			<!--'<div class="row"> 
+     
+                    '<div class="col-md-12 text-center"> 
+                      <div class="repoinfo"> 
+                      <h3 style="margin:0;word-wrap: break-word;color:#e44c65;">  Repo name</h3><br> 
+                      <p>Repository stuff</p> 
+                      </div> 
+                    </div> 
+                     
+                  </div><br>-->
 	   	 
 		</div>
 		<div class="col-md-3"></div>
@@ -70,39 +82,19 @@
 
 
 	</div><br><br><Br>
-
-
-
-	<!--<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	    <div class="modal-dialog">
-	        <div class="modal-content">
-	            <div class="modal-header">
-	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	            </div>
-	            <div class="modal-body">
-	                <iframe width="400" height="300" frameborder="0" allowfullscreen=""></iframe>
-	            </div>
-	        </div>
-	    </div>
-	</div> -->
+ 
 
 	 
 
 		<!--  <p  style="position: fixed;bottom: 0px;margin-left: 2%;">Developed By: <a href="https://github.com/fellowhacker" target="blank" style="color: blue"> <b>Naveen Manikanta Kodigudla</b></a></p>  -->
 
- 
+ <script>
+ 	$('#disNone1').click( function() {
 
- <style type="text/css">
+ 		$('#goToRepos').show();
 
- 	
- @media screen and (max-width: 350px) {
- 	.fol {
- 		font-size: 80%;
- 	}
- }
-
- </style>
-
+ 	});
+ </script>
 </body>
 </html>  
  
