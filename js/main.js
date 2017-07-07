@@ -17,10 +17,12 @@ function searchForUsers() {
     $('#repos').html('');
     q = $('#query').val();
 
+    q = q.trim();
+
     $('input').blur();
     $('#nouserfound').hide();
 
-    if(!q.trim()) {
+    if(!q) {
        $('#alert').show();
        return false;
     }
@@ -131,15 +133,22 @@ function getrepos(repoUrl) {
 }
 
 function dispRep(data, i) {
-
-  //  console.log(i);
- //   console.log(data[i].name)
+ 
+    if(!data[i].language) {
+      lang = "";
+    }
+    else {
+      lang =  " ( " + data[i].language + " ) ";
+    }
     var output = '<div class="row">' +
      
                     '<div class="col-md-12 text-center">' +
                       '<div class="repoinfo">' +
-                      '<h3 style="margin:0;word-wrap: break-word;color:#e44c65;"><a href="' + data[i].html_url + '"  style="text-decoration: none;color:#e44c65" target="blank">  ' + data[i].name  + '</a></h3>' +
+                      '<h3 style="margin:0;word-wrap: break-word;color:#e44c65;"><a href="' + data[i].html_url + '"  style="text-decoration: none;color:#e44c65" target="blank">  ' + data[i].name  + '' +
+                      '   <span style="color:white;font-size:70%;">' + lang + '</span> </h3></a> ' +
                       '<p style="color:white"> <span style="color:#e44c65">Description:</span> ' + data[i].description + '</p>' +
+                      '<img src = "img/fork.png" width="20px"><span style="color:#e44c65"> Forks : <span style="color:white">' + data[i].forks_count + '</span> </span>  ' +
+                      '&nbsp;&nbsp;<img src = "img/starr.png" width="20px"><span style="color:#e44c65"> Forks : <span style="color:white">' + data[i].forks_count + '</span> </span>  ' +
                       '</div>' +
                     '</div>' +
                      
