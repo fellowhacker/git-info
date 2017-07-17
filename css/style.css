@@ -152,7 +152,7 @@ body {
 	width: 105px;
 }
 
-#butrep {
+#butrep, #butactivity {
 
   padding: 12px 25px;
   background-color: #304352;
@@ -170,4 +170,10 @@ body {
 
  .repoinfo {
   box-shadow: 0 0 15px grey;
+ }
+
+.activityinfo {
+  box-shadow: 0 0 10px grey;
+  padding: 5px 0px;
+  padding-top: 10px;
  }

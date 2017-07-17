@@ -17,12 +17,10 @@ function searchForUsers() {
     $('#repos').html('');
     q = $('#query').val();
 
-    q = q.trim();
-
     $('input').blur();
     $('#nouserfound').hide();
 
-    if(!q) {
+    if(!q.trim()) {
        $('#alert').show();
        return false;
     }
@@ -36,9 +34,7 @@ function searchForUsers() {
 
     $.ajax( {
           
-        url : searchurl,  
-
-         
+        url : searchurl,         
 
         success :  function(data) {  
 
@@ -85,14 +81,17 @@ function getBasicInfo(data) {
     var loca = ''
     var blogdis = ''
     joined  = "<span style='color:#e44c65'>Joined at </span>" + getmonth(joined.substr(5,6).substr(0,2)) +  " , " + joined.substr(0,4)
-    var xx = data.repos_url + '?page=1&per_page=100';
-    getrepos(xx)
+    
     if(location) {
       loca =  '<span> <img src="img/locat.png" width="27px"> <span style="color:white">' + location + '</span> <br>  </span>'
     }
     if(blog) {
       blogdis = '  <img src="img/blog.png" width="25px"> <span style="color:white"><a href="' + blog + '" target="blank">' + blog + '</a></span> <br>  '
     }
+
+    var xx = data.repos_url + '?page=1&per_page=100';
+    getrepos(xx)
+    getactivity(username);
  
 
     var output =  '<div class="row">' + 
@@ -101,16 +100,30 @@ function getBasicInfo(data) {
 
 			'<div class="col-md-8 text-center">' + 
 				'<img src="' + imgUrl + '" style="width: 150px;height: 150px;margin:0 auto" class="img-responsive img-circle">' + 
-				'<h3 style="color:white"><a href=" ' + url + ' " style="text-decoration: none" target="blank">' + name + '</a> <br><span style="color: #e44c65;">Username:-</span><a href="'+ url + '" style="text-decoration: none" target="blank"> ' + username + '</a><br> '
-         + loca   + blogdis + 
+				'<h3 style="color:white"><a href=" ' + url + ' " style="text-decoration: none" target="blank">' + name + '</a> <br><span style="color: #e44c65;">Username:-</span><a href="'+ url + '" style="text-decoration: none" target="blank"> ' + username + '</a><br> '+
+        '  <img src="img/joined.png" width="27px"> <span style="color:white">' + joined + '</span> <br>  ' +
+          loca   + blogdis + 
 			//	' <span> <img src="img/locat.png" width="27px"> <span style="color:white">' + location + '</span> <br>  </span> '+loca+' ' + 
       //  '  <img src="img/blog.png" width="25px"> <span style="color:white"><a href="' + blog + '" target="blank">' + blog + '</a></span> <br>  ' + 
-        '  <img src="img/joined.png" width="27px"> <span style="color:white">' + joined + '</span> <br>  ' +
+        
         '<span style="color: #e44c65;">Repositories:-</span><span style="color:white">' + repos + '</span> <br>' + 
 				'<span style="color: #e44c65;" class="fol">Followers:- </span>' + followers + ' &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #e44c65;" class="fol">Following:- </span> ' + following  +
 				' <br><span style="color: #e44c65;">Bio:- </span><span style="color:white"> ' + bio + ' </span> <br> </h3>' +
-        '<br><a href="#goToRepos" id="disNone1"><button class="btn btn-success" style="" id="butrep"><span style="font-size: 140%;">Click to view Repositories</span></button></a>' +
-			'</div>' +
+        
+        '<div class="row">' +
+          ' <div class="col-md-3 text-center">' +
+                '<a href="#goToRepos" id="disNone1"><button class="btn btn-success" style="" id="butrep"><span style="font-size: 140%;">Click to view Repositories</span></button></a>'+
+            '</div>' +
+
+          '<div class="col-md-5">' +
+          '</div>' +
+
+          '<div class="col-md-4 text-center">' +
+             '<a href="#" id="disNone1"><button class="btn btn-success" style="" id="butactivity"><span style="font-size: 140%;">Click to view Activty</span></button></a>' +
+          '</div>'+
+       
+        '</div>' +
+ 			'</div>' +
 
 			'<div class="col-md-2"></div>' +
 
@@ -171,6 +184,77 @@ function dispRep(data, i) {
 
       return output;
 
+
+}
+
+
+$( function() {
+
+    $('#butactivity').click( function() {
+
+      getactivity();
+
+    })
+
+})
+
+
+function getactivity(username) {
+
+    var url = 'https://api.github.com/users/'+ username +'/events';
+    $.ajax( {
+
+      url : url,
+
+      success : function(data) {
+       // console.log(data)
+       $.each(data, function(i) {
+    //    console.log(data[i].repo.name)
+
+        $('#activity').append(dispActivity(data, i)) ;
+
+       });
+
+      }
+
+    });  
+
+}
+
+function dispActivity(data, i) {
+
+  var all = "";
+
+    if(data[i].type === 'CreateEvent') {
+      var name = data[i].repo.name
+      var outputact = '<div class="row">' +
+     
+                    '<div class="col-md-12 text-center activityinfo">' +
+                       '<p style="color:white;"> <i class="fa fa-code-fork small"></i>Created <span style="color:#e44c65">  repository </span> <a href="https://www.github.com/'+ name +'" style="color:white;" target="blank">' + name + '</a></p>' +
+                    '</div>' +
+                     
+                  '</div><br>' 
+      console.log(all.outputact)
+
+      all = all.outputact
+
+      return all;
+    }
+    else if(data[i].type === 'ForkEvent') {
+      var name = data[i].repo.name
+      var username = data[i].actor.login
+      var tourl = data[i].payload.forkee.full_name;
+      var outputact = '<div class="row">' +
+     
+                    '<div class="col-md-12 text-center activityinfo">' +
+                       '<p style="color:white;"> <img src = "img/fork.png" width="20px"> Forked <span style="color:#e44c65"> from </span> <a href="https://www.github.com/'+ name +'" style="color:white;" target="blank"> ' + name + ' </a><br> ' + 
+                       '<span style="color:#e44c65"> to </span><a href="https://www.github.com/'+ tourl +'" style="color:white;" target="blank"> '  +   tourl + ' </a></p>' +
+                    '</div>' +
+                     
+                  '</div><br>' 
+
+     // return all = all.outputact;
+    }
 
 }
 
