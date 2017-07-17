@@ -197,7 +197,7 @@ $( function() {
     })
 
 })
-
+getactivity('A')
 
 function getactivity(username) {
 
@@ -234,11 +234,11 @@ function dispActivity(data, i) {
                     '</div>' +
                      
                   '</div><br>' 
-      console.log(all.outputact)
+     // console.log(all.outputact)
 
-      all = all.outputact
+   //   all = all.outputact
 
-      return all;
+      return outputact;
     }
     else if(data[i].type === 'ForkEvent') {
       var name = data[i].repo.name
@@ -253,8 +253,22 @@ function dispActivity(data, i) {
                      
                   '</div><br>' 
 
-     // return all = all.outputact;
+     return outputact;
     }
+    else if(data[i].type === 'WatchEvent') {
+      var name = data[i].repo.name
+      
+      var outputact = '<div class="row">' +
+     
+                    '<div class="col-md-12 text-center activityinfo">' +
+                       '<p style="color:white;"> <img src = "img/starr.png" width="18px"> Starred <span style="color:#e44c65"> repository </span> <a href="https://www.github.com/'+ name +'" style="color:white;" target="blank"> ' + name + ' </a><br> ' + 
+                     '</div>' +
+                     
+                  '</div><br>' 
+
+     return outputact;
+    }
+
 
 }
 
