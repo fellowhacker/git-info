@@ -111,15 +111,15 @@ function getBasicInfo(data) {
 				' <br><span style="color: #e44c65;">Bio:- </span><span style="color:white"> ' + bio + ' </span> <br> </h3>' +
         
         '<div class="row">' +
-          ' <div class="col-md-3 text-center">' +
-                '<a href="#goToRepos" id="disNone1"><button class="btn btn-success" style="" id="butrep"><span style="font-size: 140%;">Click to view Repositories</span></button></a>'+
+          ' <div class="col-md-3 text-center" id="disNone1">' +
+                '<a href="#goToRepos"><button class="btn btn-success" style="" id="butrep"><span style="font-size: 140%;">Click to view Repositories</span></button></a>'+
             '</div>' +
 
           '<div class="col-md-5">' +
           '</div>' +
 
           '<div class="col-md-4 text-center">' +
-             '<a href="#" id="disNone1"><button class="btn btn-success" style="" id="butactivity"><span style="font-size: 140%;">Click to view Activty</span></button></a>' +
+             '<a href="#goToActivity" id="disNone1"><button class="btn btn-success" style="" id="butactivity"><span style="font-size: 140%;">Click to view Activty</span></button></a>' +
           '</div>'+
        
         '</div>' +
@@ -197,7 +197,7 @@ $( function() {
     })
 
 })
-getactivity('A')
+  //getactivity('A')
 
 function getactivity(username) {
 
@@ -223,7 +223,7 @@ function getactivity(username) {
 
 function dispActivity(data, i) {
 
-  var all = "";
+  var all = "<div class='row'>";
 
     if(data[i].type === 'CreateEvent') {
       var name = data[i].repo.name
@@ -236,9 +236,9 @@ function dispActivity(data, i) {
                   '</div><br>' 
      // console.log(all.outputact)
 
-   //   all = all.outputact
+     all = all + outputact
 
-      return outputact;
+  //    return outputact;
     }
     else if(data[i].type === 'ForkEvent') {
       var name = data[i].repo.name
@@ -253,7 +253,8 @@ function dispActivity(data, i) {
                      
                   '</div><br>' 
 
-     return outputact;
+     all = all + outputact
+    // return outputact;
     }
     else if(data[i].type === 'WatchEvent') {
       var name = data[i].repo.name
@@ -261,28 +262,31 @@ function dispActivity(data, i) {
       var outputact = '<div class="row">' +
      
                     '<div class="col-md-12 text-center activityinfo">' +
-                       '<p style="color:white;"> <img src = "img/starr.png" width="18px"> Starred <span style="color:#e44c65"> repository </span> <a href="https://www.github.com/'+ name +'" style="color:white;" target="blank"> ' + name + ' </a></p><br> ' + 
+                       '<p style="color:white;"> <img src = "img/starr.png" width="18px"> Starred <span style="color:#e44c65"> repository </span> <a href="https://www.github.com/'+ name +'" style="color:white;" target="blank"> ' + name + ' </a></p> ' + 
                      '</div>' +
                      
                   '</div><br>' 
 
-     return outputact;
+     all = all + outputact
+    // return outputact;
     }
     else if(data[i].type === 'PushEvent') {
       var name = data[i].repo.name
-      var commiturl = data[i].payload.commits[0]['url']
+      var commiturl = data[i].payload.commits[0]['url'].replace('api', 'www').replace('repos/', '')
       
       var outputact = '<div class="row">' +
      
                     '<div class="col-md-12 text-center activityinfo">' +
                        '<p style="color:white;"> Pushed <span style="color:#e44c65"> to </span> <a href="https://www.github.com/'+ name +'" style="color:white;" target="blank"> ' + name + ' </a><br> ' +
-                       ' '+ data[i].payload.size +'<span style="color:#e44c65"> commit </span> made  <span style="color:#e44c65"> Desc: <a href="https://www.github.com/'+ commiturl +'" style="color:white;" target="blank"> '  + data[i].payload.commits[0]['message'] + ' </a></span> </p> ' +
+                       ' '+ data[i].payload.size +'<span style="color:#e44c65"> commit </span> made  <span style="color:#e44c65"> Desc: <a href=" '+ commiturl +'" style="color:white;" target="blank"> '  + data[i].payload.commits[0]['message'] + ' </a></span> </p> ' +
                      '</div>' +
                      
                   '</div><br>' 
-
-     return outputact;
+    all = all + outputact
+    // return outputact;
     }
+    all = all + "</div>";
+    return all;
 
 
 }

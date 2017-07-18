@@ -54,10 +54,21 @@
 		</div>
 		
 		<div id="disp_res"></div><br><br>
-		<div class="disNone" id="goToRepos" >
-		<div style="height: 50px;"></div>
-		<div id="activity"></div>
-		<div id="repos"></div>
+
+		<div class="disNone" id="goToRepos">
+
+			<div style="height: 50px;"></div>
+			
+			<div id="repos"></div>
+ 
+		</div>
+
+		<div class="" id="goToActivity" >
+
+			<div style="height: 50px;"></div>
+
+			<div id="activity"></div>
+
 		</div>
  
   
@@ -80,14 +91,20 @@
 	<style type="text/css">
  
 	</style>
-	 <script>
-	 	$('#disNone1').click( function() {
 
-	 		$('#goToRepos').show();
+	 <script src="js/smoothscroll.js"></script>
+	 <script>
+	 	$(document).ready(function() {
+	 	$('#butrep').click( function() {
+
+	 		alert('k')
+	 		$('#gotoRepos').show();
+	 		
 
 	 	});
+
+	 });
 	 </script>
-	 <script src="js/smoothscroll.js"></script>
  
 </body>
 </html>  
