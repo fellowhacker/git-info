@@ -261,7 +261,22 @@ function dispActivity(data, i) {
       var outputact = '<div class="row">' +
      
                     '<div class="col-md-12 text-center activityinfo">' +
-                       '<p style="color:white;"> <img src = "img/starr.png" width="18px"> Starred <span style="color:#e44c65"> repository </span> <a href="https://www.github.com/'+ name +'" style="color:white;" target="blank"> ' + name + ' </a><br> ' + 
+                       '<p style="color:white;"> <img src = "img/starr.png" width="18px"> Starred <span style="color:#e44c65"> repository </span> <a href="https://www.github.com/'+ name +'" style="color:white;" target="blank"> ' + name + ' </a></p><br> ' + 
+                     '</div>' +
+                     
+                  '</div><br>' 
+
+     return outputact;
+    }
+    else if(data[i].type === 'PushEvent') {
+      var name = data[i].repo.name
+      var commiturl = data[i].payload.commits[0]['url']
+      
+      var outputact = '<div class="row">' +
+     
+                    '<div class="col-md-12 text-center activityinfo">' +
+                       '<p style="color:white;"> Pushed <span style="color:#e44c65"> to </span> <a href="https://www.github.com/'+ name +'" style="color:white;" target="blank"> ' + name + ' </a><br> ' +
+                       ' '+ data[i].payload.size +'<span style="color:#e44c65"> commit </span> made  <span style="color:#e44c65"> Desc: <a href="https://www.github.com/'+ commiturl +'" style="color:white;" target="blank"> '  + data[i].payload.commits[0]['message'] + ' </a></span> </p> ' +
                      '</div>' +
                      
                   '</div><br>' 
