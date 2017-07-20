@@ -1,5 +1,5 @@
 # Git-info
-It provides information about github user.
+It provides information and activity of github user.
 ### Results on search
 * Name
 * Username
@@ -7,7 +7,8 @@ It provides information about github user.
 * Following
 * Bio
 * Repositories (stars, forks)
+* Recent Activity 
 
 It uses github API v3 to search for results
 
-![alt text](img/git.png "aa")
+![alt text](img/git.png "Git-info demo")
