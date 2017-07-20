@@ -220,7 +220,7 @@ function getactivity(username) {
     });  
 
 }
-
+dispActivity("A", 0)
 function dispActivity(data, i) {
 
   var all = "<div class='row'>";
@@ -230,7 +230,7 @@ function dispActivity(data, i) {
       var outputact = '<div class="row">' +
      
                     '<div class="col-md-12 text-center activityinfo">' +
-                       '<p style="color:white;"> <i class="fa fa-code-fork small"></i>Created <span style="color:#e44c65">  repository </span> <a href="https://www.github.com/'+ name +'" style="color:white;" target="blank">' + name + '</a></p>' +
+                       '<p style="color:white;"><img src = "img/create.png" width=15px"> Created <span style="color:#e44c65">  repository </span> <a href="https://www.github.com/'+ name +'" style="color:white;" target="blank">' + name + '</a></p>' +
                     '</div>' +
                      
                   '</div><br>' 
@@ -277,7 +277,7 @@ function dispActivity(data, i) {
       var outputact = '<div class="row">' +
      
                     '<div class="col-md-12 text-center activityinfo">' +
-                       '<p style="color:white;"> Pushed <span style="color:#e44c65"> to </span> <a href="https://www.github.com/'+ name +'" style="color:white;" target="blank"> ' + name + ' </a><br> ' +
+                       '<p style="color:white;"><img src = "img/commit1.svg" width="20px" style="margin-right:0px;padding-right:0px;"> Pushed <span style="color:#e44c65"> to </span> <a href="https://www.github.com/'+ name +'" style="color:white;" target="blank"> ' + name + ' </a><br> ' +
                        ' '+ data[i].payload.size +'<span style="color:#e44c65"> commit </span> made  <span style="color:#e44c65"> Desc: <a href=" '+ commiturl +'" style="color:white;" target="blank"> '  + data[i].payload.commits[0]['message'] + ' </a></span> </p> ' +
                      '</div>' +
                      
